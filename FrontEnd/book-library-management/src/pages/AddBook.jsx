@@ -16,9 +16,7 @@ export default function AddBook() {
     return (
       <div className="container mx-auto p-8 text-center">
         <h1 className="text-4xl font-extrabold text-red-600 mb-4">Access Denied</h1>
-        <p className="text-lg text-red-400">
-          You must be logged in to add books.
-        </p>
+        <p className="text-lg text-red-400">You must be logged in to add books.</p>
       </div>
     );
   }

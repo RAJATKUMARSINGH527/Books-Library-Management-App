@@ -24,7 +24,7 @@ export default function MyBookCard({ myBook, refresh }) {
     const newRating = parseInt(e.target.value);
     try {
       await axios.patch(
-        `https://books-library-management-app-xo42.onrender.com/mybooks/${myBook.bookId._id}/rating`,
+        `https://books-library-management-app-xo42.onrender.com/api/mybooks/${myBook.bookId._id}/rating`,
         { rating: newRating },
         { withCredentials: true }
       );
