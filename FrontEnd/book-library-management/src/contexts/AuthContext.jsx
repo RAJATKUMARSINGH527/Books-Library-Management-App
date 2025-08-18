@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
     console.log("[AUTH] Attempting login for:", email);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/auth/login",
+        "https://books-library-management-app-xo42.onrender.com/api/auth/login",
         { email, password },
         { withCredentials: true }
       );
@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
     console.log("[AUTH] Attempting registration for:", email);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/auth/register",
+        "https://books-library-management-app-xo42.onrender.com/api/auth/register",
         { email, password }
       );
       console.log("[AUTH] Registration response:", res.data);
@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
   async function logout() {
     console.log("[AUTH] Logging out user:", user?.email || "No user");
     try {
-      const res = await axios.get("http://localhost:8000/api/auth/logout", {
+      const res = await axios.get("https://books-library-management-app-xo42.onrender.com/api/auth/logout", {
         withCredentials: true,
       });
       console.log("[AUTH] Logout response:", res.data);
@@ -69,7 +69,7 @@ export function AuthProvider({ children }) {
     async function fetchMe() {
       console.log("[AUTH] Checking if user is already logged in...");
       try {
-        const res = await axios.get("http://localhost:8000/api/auth/me", {
+        const res = await axios.get("https://books-library-management-app-xo42.onrender.com/api/auth/me", {
           withCredentials: true,
         });
         // Ensure correct user data extraction

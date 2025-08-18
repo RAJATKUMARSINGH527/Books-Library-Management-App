@@ -18,7 +18,7 @@ export function BooksProvider({ children }) {
   async function fetchBooks() {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:8000/api/books/');
+      const res = await axios.get('https://books-library-management-app-xo42.onrender.com/api/books/');
       // Expect response in form { message: "...", data: [...] }
       setBooks(res.data.data || []);
     } catch (err) {

@@ -13,7 +13,7 @@ export default function MyBooks() {
       if (!user) return;
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:8000/api/mybooks/", {
+        const res = await axios.get("https://books-library-management-app-xo42.onrender.com/api/mybooks/", {
           withCredentials: true,
         });
         setBooks(Array.isArray(res.data) ? res.data : res.data.data || []);
@@ -54,7 +54,7 @@ export default function MyBooks() {
               key={myBook._id}
               myBook={myBook}
               refresh={async () => {
-                const res = await axios.get("http://localhost:8000/api/mybooks/", {
+                const res = await axios.get("https://books-library-management-app-xo42.onrender.com/api/mybooks/", {
                   withCredentials: true,
                 });
                 setBooks(Array.isArray(res.data) ? res.data : res.data.data || []);
