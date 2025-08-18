@@ -10,8 +10,10 @@ const mybooksRoutes = require('./routes/mybooksRoutes');
 
 const app = express();
 
-// Enable CORS with credentials support
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({
+  origin: 'https://books-library-management-app-delta.vercel.app', 
+  credentials: true, // allow sending cookies
+}));
 
 // Parse JSON bodies
 app.use(express.json());
