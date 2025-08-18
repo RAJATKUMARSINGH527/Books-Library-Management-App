@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const { connectToDB } = require('./config/db');
@@ -15,6 +16,19 @@ app.use(cors({
   credentials: true, // allow sending cookies
 }));
 
+console.log("[AUTH] User is already logged in:", res.data.user);
+console.log("[AUTH] User data:", res.data.user);
+
+
+app.use(session({
+  secret:process.env.SESSION_SECRET_KEY ,      
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    sameSite: 'none',                  // Required for cross-site cookies
+    secure: true                       // Cookie sent only over HTTPS
+  }
+}));
 // Parse JSON bodies
 app.use(express.json());
 
