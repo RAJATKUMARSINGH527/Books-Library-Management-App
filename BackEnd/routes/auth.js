@@ -11,7 +11,6 @@ authRoutes.post('/register', async (req, res) => {
   console.log("[REGISTER] Received:", email);
 
   try {
-    // Check if user already exists
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered.' });
@@ -21,7 +20,6 @@ authRoutes.post('/register', async (req, res) => {
     const user = await userModel.create({ email, password: hash });
     console.log("[REGISTER] Success:", user);
 
-    // Exclude password from response
     const userData = {
       _id: user._id,
       email: user.email,
@@ -65,10 +63,11 @@ authRoutes.post('/login', async (req, res) => {
     );
     console.log("[LOGIN] Success, token generated for:", email);
 
+    // Set cookie with 'none' sameSite for cross-domain and secure true for HTTPS
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
 
@@ -91,8 +90,9 @@ authRoutes.get('/logout', (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    sameSite: 'none',
   });
+  
   res.json({
     message: 'You have been logged out successfully. See you again soon!',
   });
