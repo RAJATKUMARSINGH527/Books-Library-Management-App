@@ -16,9 +16,6 @@ app.use(cors({
   credentials: true, // allow sending cookies
 }));
 
-console.log("[AUTH] User is already logged in:", res.data.user);
-console.log("[AUTH] User data:", res.data.user);
-
 
 app.use(session({
   secret:process.env.SESSION_SECRET_KEY ,      
@@ -39,6 +36,27 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/books', booksRoutes);
 app.use('/api/mybooks', mybooksRoutes);
+
+
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ status: 'success', message: 'Server is up and running on Render!' });
+});
+
+// 404 Not Found
+app.use((req, res, next) => {
+  res.status(404).json({ status: 'error', message: 'Endpoint not found' });
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    status: 'error',
+    message: err.message || 'Internal server error',
+  });
+});
+
 
 const PORT = process.env.PORT || 5000;
 
