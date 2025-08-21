@@ -19,8 +19,8 @@ It provides a user-friendly UI for authentication, browsing books, and tracking 
 
 ## ✅ Prerequisites
 
-- Node.js v16+ (v18+ recommended)  
-- npm (or pnpm / yarn)
+  - Node.js v16+ (v18+ recommended)  
+  - npm (or pnpm / yarn)
 
 ---
 
@@ -33,8 +33,9 @@ cd Books-Library-Management-App/frontend
 ```
 ***2. Install dependencies***
 
+```bash
 npm install
-
+```
 
 ***3. Configure environment variables***
 
@@ -106,31 +107,31 @@ const { data } = await api.post('/auth/login', { email, password });
 
 ***🔐 Auth & Security notes***
 
-- Prefer HttpOnly cookies for JWTs in production (reduces XSS risk).
+   - Prefer HttpOnly cookies for JWTs in production (reduces XSS risk).
 
-- If you use cookies, set `withCredentials: true` in your axios instance and enable credentials in backend CORS (`credentials: true` + `origin` set to frontend URL).
+   - If you use cookies, set `withCredentials: true` in your axios instance and enable credentials in backend CORS (`credentials: true` + `origin` set to frontend URL).
 
-- If you choose token-in-storage, make sure to handle token refresh & secure storage policies.
+   - If you choose token-in-storage, make sure to handle token refresh & secure storage policies.
 
 ***🖼️ UI / UX Highlights (frontend-specific)***
 
-- Animated gradient backgrounds and glassmorphism cards
+   - Animated gradient backgrounds and glassmorphism cards
 
-- Responsive sticky navbar with shadow and gradient
+   - Responsive sticky navbar with shadow and gradient
 
-- Delightful hover/focus effects and Framer Motion transitions
+   - Delightful hover/focus effects and Framer Motion transitions
 
-- Light + dark theme ready (if implemented)
+   - Light + dark theme ready (if implemented)
 
-- Mobile-first design
+   - Mobile-first design
 
 ***🌍 Deployment***
 
-- ***Vercel / Netlify*** are recommended for the frontend.
+   - ***Vercel / Netlify*** are recommended for the frontend.
 
-- When deploying, set the environment variable `VITE_API_URL` to your backend’s production API (e.g., `https://api.mybooks.app/api`).
+   - When deploying, set the environment variable `VITE_API_URL` to your backend’s production API (e.g., `https://api.mybooks.app/api`).
 
-- Ensure backend CORS allows the frontend origin and credentials (if using cookies).
+   - Ensure backend CORS allows the frontend origin and credentials (if using cookies).
 
 ***🧪 Useful Scripts (package.json)***
 
