@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BooksProvider } from "./contexts/BooksContext";
-import { ThemeProvider } from "./contexts/ThemeContext"; // import theme provider
-import "./index.css"; // Tailwind
+import { ThemeProvider } from "./contexts/ThemeContext"; 
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

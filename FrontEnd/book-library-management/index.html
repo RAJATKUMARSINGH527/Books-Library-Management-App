@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/src/index.css" rel="stylesheet">
+
+    <script>
+      // Immediately set the dark class if stored and true before React loads
+      try {
+        if (localStorage.getItem('darkMode') === 'true') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch {}
+    </script>
+
     <title>Book Library Management</title>
   </head>
   <body>
