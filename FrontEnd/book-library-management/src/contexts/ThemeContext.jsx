@@ -7,24 +7,31 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  // Initialize from localStorage (persisted user choice) or default to false
   const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window === "undefined") return false; // SSR safety
+
+    try {
       const stored = localStorage.getItem("darkMode");
       if (stored !== null) return stored === "true";
-      return false; // default light mode
+    } catch {
+      // localStorage inaccessible (private mode etc.)
+      return false;
     }
-    return false;
+    return false; // default light mode
   });
 
   useEffect(() => {
     const root = document.documentElement; // <html> element
     if (darkMode) {
       root.classList.add("dark");
-      localStorage.setItem("darkMode", "true");
+      try {
+        localStorage.setItem("darkMode", "true");
+      } catch {}
     } else {
       root.classList.remove("dark");
-      localStorage.setItem("darkMode", "false");
+      try {
+        localStorage.setItem("darkMode", "false");
+      } catch {}
     }
   }, [darkMode]);
 
