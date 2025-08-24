@@ -7,12 +7,12 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  // Initialize darkMode from localStorage or prefers-color-scheme
+  // Initialize dark mode state from localStorage if it exists; default to false otherwise (light mode)
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('darkMode');
       if (stored !== null) return stored === 'true';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return false;  // Always default to light theme if no stored user preference
     }
     return false;
   });
