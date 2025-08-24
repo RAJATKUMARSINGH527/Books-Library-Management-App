@@ -7,28 +7,29 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  // Initialize dark mode state from localStorage if it exists; default to false otherwise (light mode)
+  // Initialize from localStorage (persisted user choice) or default to false
   const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('darkMode');
-      if (stored !== null) return stored === 'true';
-      return false;  // Always default to light theme if no stored user preference
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("darkMode");
+      if (stored !== null) return stored === "true";
+      return false; // default light mode
     }
     return false;
   });
 
   useEffect(() => {
+    const root = document.documentElement; // <html> element
     if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
+      root.classList.add("dark");
+      localStorage.setItem("darkMode", "true");
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
+      root.classList.remove("dark");
+      localStorage.setItem("darkMode", "false");
     }
   }, [darkMode]);
 
   function toggleTheme() {
-    setDarkMode(prev => !prev);
+    setDarkMode((prev) => !prev);
   }
 
   return (
