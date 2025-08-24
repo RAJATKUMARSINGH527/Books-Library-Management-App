@@ -10,7 +10,7 @@ import AdminRoute from "./components/AdminRoute";
 
 export default function App() {
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col">
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col transition-colors">
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-6">
         <Routes>
@@ -41,7 +41,9 @@ export default function App() {
             element={
               <AdminRoute>
                 {/* Your AdminPanel component */}
-                <div>Admin Panel Goes Here</div>
+                <div className="text-white text-center text-2xl p-8">
+                  Admin Panel Goes Here
+                </div>
               </AdminRoute>
             }
           />

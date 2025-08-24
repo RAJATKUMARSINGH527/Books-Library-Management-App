@@ -7,12 +7,12 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-5xl font-extrabold text-purple-700 mb-12 text-center drop-shadow-lg">
+      <h1 className="text-5xl font-extrabold text-purple-700 dark:text-yellow-300 mb-12 text-center drop-shadow-lg transition-colors">
         Explore Our Magical Book Collection
       </h1>
       {loading ? (
         <div className="flex justify-center items-center py-28">
-          <p className="text-pink-600 text-3xl font-extrabold animate-pulse">
+          <p className="text-pink-600 dark:text-yellow-400 text-3xl font-extrabold animate-pulse">
             Loading books...
           </p>
         </div>

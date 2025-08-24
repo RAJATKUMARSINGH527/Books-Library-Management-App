@@ -27,23 +27,23 @@ export default function MyBooks() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-5xl font-extrabold text-pink-600 mb-12 text-center drop-shadow-lg">
+      <h1 className="text-5xl font-extrabold text-pink-600 dark:text-yellow-300 mb-12 text-center drop-shadow-lg transition-colors">
         My Bookshelf
       </h1>
 
       {!user ? (
-        <p className="text-purple-400 text-center text-3xl font-extrabold">
+        <p className="text-purple-400 dark:text-yellow-400 text-center text-3xl font-extrabold transition-colors">
           Please log in to see your books.
         </p>
       ) : loading ? (
         <div className="flex justify-center items-center py-28">
-          <p className="text-purple-700 text-3xl font-extrabold animate-pulse">
+          <p className="text-purple-700 dark:text-yellow-400 text-3xl font-extrabold animate-pulse transition-colors">
             Loading your books...
           </p>
         </div>
       ) : books.length === 0 ? (
         <div className="flex justify-center items-center py-28">
-          <p className="text-pink-600 text-3xl font-extrabold">
+          <p className="text-pink-600 dark:text-yellow-300 text-3xl font-extrabold transition-colors">
             No books in your bookshelf yet.
           </p>
         </div>

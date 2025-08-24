@@ -10,16 +10,19 @@ export function useBooks() {
 export function BooksProvider({ children }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // track error state
 
   async function fetchBooks() {
     setLoading(true);
+    setError(null); // reset error before fetching
     try {
-      const res = await axios.get('https://books-library-management-app-xo42.onrender.com/api/books/', {
-        withCredentials: true
+      const res = await axios.get("https://books-library-management-app-xo42.onrender.com/api/books/", {
+        withCredentials: true,
       });
       setBooks(res.data.data || []);
     } catch (err) {
       setBooks([]);
+      setError(err.message || "Failed to fetch books");
       console.error("Failed to fetch books:", err);
     }
     setLoading(false);
@@ -30,7 +33,7 @@ export function BooksProvider({ children }) {
   }, []);
 
   return (
-    <BooksContext.Provider value={{ books, loading, fetchBooks }}>
+    <BooksContext.Provider value={{ books, loading, error, fetchBooks }}>
       {children}
     </BooksContext.Provider>
   );

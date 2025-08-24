@@ -15,8 +15,12 @@ export default function AddBook() {
   if (!user) {
     return (
       <div className="container mx-auto p-8 text-center">
-        <h1 className="text-4xl font-extrabold text-red-600 mb-4">Access Denied</h1>
-        <p className="text-lg text-red-400">You must be logged in to add books.</p>
+        <h1 className="text-4xl font-extrabold text-red-600 dark:text-red-400 mb-4">
+          Access Denied
+        </h1>
+        <p className="text-lg text-red-400 dark:text-red-300">
+          You must be logged in to add books.
+        </p>
       </div>
     );
   }
@@ -33,9 +37,13 @@ export default function AddBook() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("https://books-library-management-app-xo42.onrender.com/api/books", form, {
-        withCredentials: true,
-      });
+      await axios.post(
+        "https://books-library-management-app-xo42.onrender.com/api/books",
+        form,
+        {
+          withCredentials: true,
+        }
+      );
       alert("Book added successfully!");
       setForm({ title: "", author: "", coverImage: "", availability: true });
     } catch (err) {
@@ -46,41 +54,44 @@ export default function AddBook() {
 
   return (
     <div className="container mx-auto p-8 max-w-lg">
-      <h1 className="text-5xl font-extrabold text-pink-600 mb-10 text-center drop-shadow-lg">
+      <h1 className="text-5xl font-extrabold text-pink-600 dark:text-yellow-300 mb-10 text-center drop-shadow-lg">
         Add a New Book
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 bg-white/90 backdrop-blur-lg rounded-3xl shadow-xl p-8 border border-pink-400"
+        className="space-y-6 bg-white/70 dark:bg-black/60 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-pink-400 dark:border-yellow-400 transition-colors"
       >
         <input
           type="text"
           name="title"
           placeholder="Book Title"
-          className="w-full rounded-lg border border-pink-300 px-4 py-3 text-purple-900 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+          className="w-full rounded-lg border border-pink-300 dark:border-yellow-300 px-4 py-3 text-purple-900 dark:text-yellow-100 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-yellow-400 transition"
           value={form.title}
           onChange={handleChange}
           required
           disabled={loading}
+          autoComplete="off"
         />
         <input
           type="text"
           name="author"
           placeholder="Author Name"
-          className="w-full rounded-lg border border-pink-300 px-4 py-3 text-purple-900 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+          className="w-full rounded-lg border border-pink-300 dark:border-yellow-300 px-4 py-3 text-purple-900 dark:text-yellow-100 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-yellow-400 transition"
           value={form.author}
           onChange={handleChange}
           required
           disabled={loading}
+          autoComplete="off"
         />
         <input
           type="text"
           name="coverImage"
           placeholder="Cover Image URL (optional)"
-          className="w-full rounded-lg border border-pink-300 px-4 py-3 text-purple-900 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+          className="w-full rounded-lg border border-pink-300 dark:border-yellow-300 px-4 py-3 text-purple-900 dark:text-yellow-100 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-yellow-400 transition"
           value={form.coverImage}
           onChange={handleChange}
           disabled={loading}
+          autoComplete="off"
         />
         <label className="inline-flex items-center space-x-3">
           <input
@@ -88,15 +99,17 @@ export default function AddBook() {
             name="availability"
             checked={form.availability}
             onChange={handleChange}
-            className="form-checkbox h-6 w-6 text-pink-500"
+            className="form-checkbox h-6 w-6 text-pink-500 dark:text-yellow-400 transition"
             disabled={loading}
           />
-          <span className="text-purple-800 font-semibold select-none">Available</span>
+          <span className="text-purple-800 dark:text-yellow-300 font-semibold select-none">
+            Available
+          </span>
         </label>
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-4 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-purple-900 text-white font-extrabold shadow-xl hover:from-purple-700 hover:to-pink-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-4 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-purple-900 dark:from-yellow-600 dark:via-yellow-400 dark:to-yellow-600 text-white dark:text-black font-extrabold shadow-xl hover:from-purple-700 hover:to-pink-600 dark:hover:from-yellow-700 dark:hover:to-yellow-500 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Adding..." : "Add Book"}
         </button>

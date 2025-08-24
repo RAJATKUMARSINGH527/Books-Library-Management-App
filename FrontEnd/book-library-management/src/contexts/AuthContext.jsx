@@ -9,6 +9,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // track initial auth loading
 
   async function login(email, password) {
     try {
@@ -32,6 +33,7 @@ export function AuthProvider({ children }) {
         { email, password }
       );
       alert(`Account created for ${email}. Please log in.`);
+      return res;
     } catch (err) {
       console.error("Registration error:", err.response?.data || err.message);
       throw err;
@@ -53,6 +55,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     async function fetchMe() {
+      setLoading(true);
       try {
         const res = await axios.get("https://books-library-management-app-xo42.onrender.com/api/auth/me", {
           withCredentials: true,
@@ -60,14 +63,15 @@ export function AuthProvider({ children }) {
         setUser(res.data.user || res.data || null);
       } catch {
         setUser(null);
+      } finally {
+        setLoading(false);
       }
     }
     fetchMe();
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  // Optional: passing loading state for UI to handle auth-loading scenario
+  const value = { user, loading, login, register, logout };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

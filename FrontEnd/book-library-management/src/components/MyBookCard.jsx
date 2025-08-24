@@ -37,20 +37,19 @@ export default function MyBookCard({ myBook, refresh }) {
 
   return (
     <div
-      className="bg-white/30 backdrop-blur-lg border border-white/30 shadow-xl rounded-3xl p-6 max-w-xs mx-auto
-      flex flex-col items-start space-y-4 transition-shadow hover:shadow-2xl"
+      className="bg-white/30 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-gray-700 shadow-2xl rounded-3xl p-6 max-w-xs mx-auto flex flex-col items-start space-y-4 transition-shadow hover:shadow-3xl"
     >
-      <h2 className="text-2xl font-extrabold text-pink-600 drop-shadow-md">
+      <h2 className="text-2xl font-extrabold text-pink-600 dark:text-yellow-300 drop-shadow-md mb-0">
         {myBook.bookId.title}
       </h2>
-      <p className="italic text-purple-700 font-semibold">{myBook.bookId.author}</p>
+      <p className="italic text-purple-700 dark:text-yellow-200 font-semibold mb-2">{myBook.bookId.author}</p>
 
       <div className="w-full flex justify-between items-center">
-        <label className="font-semibold text-purple-800">Status:</label>
+        <label className="font-semibold text-purple-800 dark:text-yellow-300">Status:</label>
         <select
           value={status}
           onChange={handleStatusChange}
-          className="rounded-full px-3 py-1 bg-white/80 text-purple-800 font-semibold shadow focus:outline-none focus:ring-2 focus:ring-pink-500"
+          className="rounded-full px-3 py-1 bg-white/90 dark:bg-black/60 text-purple-800 dark:text-yellow-100 font-semibold shadow focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-yellow-400 transition"
         >
           <option value="Want to Read">Want to Read</option>
           <option value="Currently Reading">Currently Reading</option>
@@ -59,11 +58,11 @@ export default function MyBookCard({ myBook, refresh }) {
       </div>
 
       <div className="w-full flex justify-between items-center">
-        <label className="font-semibold text-pink-600">Rating:</label>
+        <label className="font-semibold text-pink-600 dark:text-yellow-300">Rating:</label>
         <select
           value={rating}
           onChange={handleRatingChange}
-          className="rounded-full px-3 py-1 bg-white/80 text-pink-600 font-semibold shadow focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="rounded-full px-3 py-1 bg-white/90 dark:bg-black/60 text-pink-600 dark:text-yellow-100 font-semibold shadow focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-yellow-400 transition"
         >
           <option value={0}>Rate...</option>
           {[1, 2, 3, 4, 5].map((n) => (
