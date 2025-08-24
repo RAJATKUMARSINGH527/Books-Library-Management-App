@@ -3,8 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-// import { SunIcon, MoonIcon } from '@heroicons/react/24/outline'; // optional if you use SVG icons
-import { useTheme } from "../contexts/ThemeContext"; // You need to create/use this context
+import { useTheme } from "../contexts/ThemeContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -17,24 +16,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-purple-700 via-pink-600 to-pink-400 dark:from-gray-900 dark:via-black dark:to-gray-800 shadow-xl backdrop-blur-md bg-white/30 dark:bg-black/30 border-b border-white/20 dark:border-gray-700 transition-colors">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-
-        {/* Theme Toggle Button - LEFT side */}
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle dark mode"
-          className="mr-6 p-2 rounded-full bg-white/80 dark:bg-black/80 shadow hover:bg-white/90 dark:hover:bg-black/60 transition"
-        >
-          {/* Use icon component or emoji */}
-          {darkMode ? (
-            // <SunIcon className="h-5 w-5 text-yellow-400" />
-            <span role="img" aria-label="Light mode" className="text-xl">🌙</span>
-          ) : (
-            // <MoonIcon className="h-5 w-5 text-purple-700" />
-            <span role="img" aria-label="Dark mode" className="text-xl">☀️</span>
-          )}
-        </button>
-
-        {/* Logo/Text Center */}
+        {/* Logo/Text */}
         <Link
           to="/"
           className="text-3xl font-extrabold text-white dark:text-yellow-300 tracking-wide drop-shadow-md select-none flex items-center space-x-2"
@@ -45,7 +27,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Right side: Nav Links/user menu */}
+        {/* Nav Links */}
         <div className="flex items-center gap-6">
           <Link
             to="/"
@@ -124,6 +106,23 @@ export default function Navbar() {
               </Transition>
             </Menu>
           )}
+
+          {/* Theme Toggle Button - RIGHT side */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle dark mode"
+            className="ml-6 p-2 rounded-full bg-white/80 dark:bg-black/80 shadow hover:bg-white/90 dark:hover:bg-black/60 transition"
+          >
+            {darkMode ? (
+              <span role="img" aria-label="Light mode" className="text-xl">
+                🌙
+              </span>
+            ) : (
+              <span role="img" aria-label="Dark mode" className="text-xl">
+                ☀️
+              </span>
+            )}
+          </button>
         </div>
       </div>
     </nav>
